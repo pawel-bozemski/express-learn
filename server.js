@@ -24,6 +24,13 @@ app.get('/', (req, res) => {
 app.get('/home', (req, res) => {
   res.render('index');
 });
+app.get('/dark', (req, res) => {
+  res.render('index', {layout: 'dark'});
+});
+
+app.get('/dark/about', (req, res) => {
+  res.render('about', {layout: 'dark'});
+});
 
 app.get('/about', (req, res) => {
   res.render('about');
