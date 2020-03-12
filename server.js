@@ -7,6 +7,9 @@ const app = express();
 app.engine('hbs', hbs({ extname: 'hbs', layoutsDir: './layouts', defaultLayout: 'main' }));
 app.set('view engine', '.hbs');
 
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 app.use(express.static(path.join(__dirname + '/public')));
 
 app.use('/user', (req, res, next) => {
@@ -49,10 +52,20 @@ app.get('/info', (req, res) => {
   res.render('info');
 });
 
+app.post('/contact/send-message', (req, res) => {
+  const { author, sender, title, message } = req.body;
+
+  if (author && sender && title && message) {
+    res.render('contact', { isSent: true });
+  } else {
+    res.render('contact', { isError: true });
+  }
+});
+
+
 app.use((req, res) => {
   res.status(404).render('404');
 })
-
 
 app.listen(8000, () => {
   console.log('Server is running on port: 8000');
