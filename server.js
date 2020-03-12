@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 app.get('/home', (req, res) => {
   res.render('index');
 });
+
 app.get('/dark', (req, res) => {
   res.render('index', {layout: 'dark'});
 });
@@ -34,6 +35,18 @@ app.get('/dark/about', (req, res) => {
 
 app.get('/about', (req, res) => {
   res.render('about');
+});
+
+app.get('/contact', (req, res) => {
+  res.render('contact');
+});
+
+app.get('/history', (req, res) => {
+  res.render('history');
+});
+
+app.get('/info', (req, res) => {
+  res.render('info');
 });
 
 app.use((req, res) => {
